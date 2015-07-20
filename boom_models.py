@@ -81,8 +81,8 @@ class Question(ndb.Model):
         Returns:
             The Question entity that was inserted.
         """
-        current_user = get_endpoints_current_user()
-        entity = cls(parent=get_key_for_user(current_user),text=message.question_text, asker_id=current_user)
+        current_user_id = get_endpoints_current_user().user_id()
+        entity = cls(parent=get_key_for_user_id(current_user_id),text=message.question_text, asker_id=current_user_id)
         entity.put()
         return entity
 

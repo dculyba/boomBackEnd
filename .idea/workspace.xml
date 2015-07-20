@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b49ac75e-4f03-4540-86ac-beb10c5b6aeb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boom_api_messages.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boom_models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/boom_api.py" afterPath="$PROJECT_DIR$/boom_api.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/boom_models.py" afterPath="$PROJECT_DIR$/boom_models.py" />
     </list>
     <ignored path="boom-python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +40,8 @@
       <file leaf-file-name="boom_api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boom_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+            <state vertical-scroll-proportion="-13.148149">
+              <caret line="69" column="4" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="4" />
               <folding>
                 <element signature="e#204#220#0" expanded="true" />
               </folding>
@@ -56,8 +52,8 @@
       <file leaf-file-name="boom_models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boom_models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5483146">
-              <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.63595504">
+              <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
               <folding>
                 <element signature="e#232#274#0" expanded="true" />
               </folding>
@@ -68,8 +64,8 @@
       <file leaf-file-name="boom_api_messages.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boom_api_messages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+            <state vertical-scroll-proportion="-9.259259">
+              <caret line="23" column="8" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -536,16 +532,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boom_api_messages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        <state vertical-scroll-proportion="-9.259259">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/boom_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+        <state vertical-scroll-proportion="-13.148149">
+          <caret line="69" column="4" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="4" />
           <folding>
             <element signature="e#204#220#0" expanded="true" />
           </folding>
@@ -554,8 +550,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boom_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5483146">
-          <caret line="84" column="95" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.63595504">
+          <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
           <folding>
             <element signature="e#232#274#0" expanded="true" />
           </folding>
