@@ -44,8 +44,8 @@ class Question(ndb.Model):
     text = ndb.StringProperty(required=True, indexed=False)
     time_asked = ndb.DateTimeProperty(auto_now_add=True)
     asker_id = ndb.StringProperty(required=True)
-    yesCount = ndb.IntegerProperty(indexed=False, default=0)
-    noCount = ndb.IntegerProperty(indexed=False, default=0)
+    yes_count = ndb.IntegerProperty(indexed=False, default=0)
+    no_count = ndb.IntegerProperty(indexed=False, default=0)
 
     @property
     def timestamp(self):
