@@ -8,14 +8,29 @@ provides a method for returning a 401 Unauthorized when no current user can be
 determined.
 """
 
+import logging
 
-from google.appengine.ext import endpoints
+import endpoints
 from google.appengine.ext import ndb
+from google.appengine.api import users
+from google.appengine.ext import db
 
 from boom_api_messages import QuestionResponseMessage
+from boom_api_messages import QuestionAnswerMessage
 
 
 TIME_FORMAT_STRING = '%b %d, %Y %I:%M:%S %p'
+
+class User(db.Model):
+    user = db.UserProperty(required=True)
+
+def email_to_userid(address):
+    """Return a stable user_id string based on an email address, or None if
+    the address is not a valid/existing google account."""
+    u = users.User(address)
+    key = User(user=u).put()
+    obj = User.get(key)
+    return obj.user.user_id()
 
 def get_endpoints_current_user(raise_unauthorized=True):
     """Returns a current user and (optionally) causes an HTTP 401 if no user.
@@ -37,8 +52,16 @@ def get_endpoints_current_user(raise_unauthorized=True):
 def get_key_for_user_id(userId):
     return ndb.Key("User", userId)
 
+def safe_get_user_id_from_user(user):
+    if user.user_id() != None:
+        return user.user_id()
+    elif user.email() != None:
+        return email_to_userid(user.email())
+    else:
+        return "NO_USER_ID"
+
 def get_key_for_user(user):
-    return get_key_for_user_id( user.user_id() )
+    return get_key_for_user_id( safe_get_user_id_from_user(user) )
 
 class Question(ndb.Model):
     text = ndb.StringProperty(required=True, indexed=False)
@@ -81,30 +104,61 @@ class Question(ndb.Model):
         Returns:
             The Question entity that was inserted.
         """
-        current_user_id = get_endpoints_current_user().user_id()
-        entity = cls(parent=get_key_for_user_id(current_user_id),text=message.question_text, asker_id=current_user_id)
-        entity.put()
+        current_user_id = safe_get_user_id_from_user(get_endpoints_current_user())
+        key = get_key_for_user_id(current_user_id)
+        #entity = cls(parent=key,text=message.question_text, asker_id=current_user_id)
+        entity = cls(text=message.question_text, asker_id=current_user_id)
+        return_key = entity.put()
         return entity
 
     @classmethod
+    def answer_from_message(cls, message):
+        """Gets the current user and answers a question.
+
+        Args:
+            message: A QuestionAnswerMessage instance to be answered.
+
+        Returns:
+            The Question entity that was answered.
+        """
+        to_answer = cls.get_by_id(message.question_id)
+        if to_answer != None:
+            print "found answer 2!"
+        if message.answer == QuestionAnswerMessage.Answer.YES:
+            to_answer.yes_count += 1
+        elif message.answer == QuestionAnswerMessage.Answer.NO:
+            to_answer.no_count += 1
+        to_answer.put()
+        return to_answer
+
+    @classmethod
     def query_current_user(cls):
-        """Creates a query for the scores of the current user.
+        """Creates a query for the questions of the current user.
 
         Returns:
             An ndb.Query object bound to the current user. This can be used
             to filter for other properties or order by them.
         """
-        current_user_id = get_endpoints_current_user().user_id()
+        current_user_id = safe_get_user_id_from_user(get_endpoints_current_user())
         return cls.query(cls.asker_id == current_user_id)
 
     @classmethod
     def query_user_id(cls, user_id):
-        """Creates a query for the scores of the current user.
+        """Creates a query for the questions of the specified user.
 
         Returns:
             An ndb.Query object bound to the user id passed in. This can be used
             to filter for other properties or order by them.
         """
-        current_user = get_endpoints_current_user()
         return cls.query(cls.asker_id == user_id)
+
+    @classmethod
+    def query_all(cls):
+        """Creates a query for all the questions.
+
+        Returns:
+            An ndb.Query object bound to the user id passed in. This can be used
+            to filter for other properties or order by them.
+        """
+        return cls.query()
 
